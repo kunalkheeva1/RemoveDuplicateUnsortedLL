@@ -15,26 +15,34 @@ public class RemoveDuplicateUnsortedLL {
             this.next = null;
         }
     }
-
+//method to delete the duplicates from ll without even sorting
     public static Node removeDuplicateUnsortedLL(Node head){
         if(head==null||head.next==null){
             return null;
         }
+
         HashSet<Integer> hs = new HashSet<>();
+        //add the head data in hashset
         hs.add(head.data);
         Node prev = head;
         Node current = head.next;
         while(current!= null){
+            //if hs contains the data of current, which is basically the second node
             if(hs.contains(current.data)){
+                //then prev next will skip the current and point towards the current.next
                 prev.next = current.next;
+                //and current will move to current. next
                 current = current.next;
             }
             else{
+                //otherwise we will add more current data in map for comparison
                 hs.add(current.data);
+                //and move prev to current
                 prev=current;
+                //and current to current .next
                 current = current.next;
             }
-        }return head;
+        }return head;           //at the end the head will be returned
     }
     public static void main(String[] args) {
 
